@@ -1,0 +1,90 @@
+/* CONFIGURAÇÃO DA PÁGINA (FUNDO BRANCO) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff; /* Fundo da tela totalmente branco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* O CUBO AGORA RETANGULAR COM AS SUAS CORES */
+.cubo {
+    width: 550px;       /* Mais largo */
+    height: 340px;      /* Altura proporcional para um retângulo equilibrado */
+    background: linear-gradient(45deg, #d41e31, #491f8f); /* Seu gradiente */
+    border: none;       /* Sem bordas */
+    border-radius: 24px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;  /* Permite que ela saia do topo do retângulo */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.6s ease;
+}
+
+/* ESTILIZAÇÃO DA IMAGEM (CENTRALIZADA) */
+.imagem-capita {
+    position: absolute;
+    height: 115%;       /* Um pouco maior que o retângulo para já marcar presença */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(1); 
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* TEXTO DE DESCRIÇÃO (ESCONDIDO) */
+.descricao {
+    position: absolute;
+    right: 40px;
+    width: 220px;       /* Mais espaço para leitura */
+    color: #ffffff;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1;
+}
+
+.descricao h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffeb3b;     /* Amarelo/Dourado dos poderes dela */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.descricao p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #f5f5f5;
+}
+
+/* =========================================================
+   ESTADOS DE ANIMAÇÃO (ATIVADOS PELO JAVASCRIPT)
+========================================================= */
+
+/* Brilho extra no retângulo */
+.cubo.ativo {
+    box-shadow: 0 30px 60px rgba(212, 30, 49, 0.35), 0 0 40px rgba(73, 31, 143, 0.2);
+}
+
+/* A imagem vai para a esquerda, sobe e cresce (efeito saindo do cubo) */
+.cubo.ativo .imagem-capita {
+    transform: translateX(-115%) translateY(-35px) scale(1.12);
+}
+
+/* A descrição surge suavemente no espaço que sobrou à direita */
+.cubo.ativo .descricao {
+    opacity: 1;
+    transform: translateX(0);
+}
